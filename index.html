@@ -50,7 +50,7 @@
         <div class="p-6 bg-gray-900 text-white md:w-2/3">
             <div class="flex justify-between items-center">
                 <h2 class="text-lg">Weather</h2>
-                <p id="currentTime" class="text-gray-400 text-sm">Saturday, 6:00 pm</p>
+                <p id="currentTime" class="text-gray-400 text-sm"></p>
             </div>
 
             <div class="flex items-center space-x-4 mt-4">
@@ -63,55 +63,8 @@
             <p class="mt-1 text-sm">Humidity: <span id="humidity">--%</span></p>
             <p class="mt-1 text-sm">Wind: <span id="windSpeed">-- km/h</span></p>
 
-            <!-- Forecast Tabs -->
-            <div class="flex space-x-6 mt-6 border-b border-gray-700 pb-2">
-                <button class="text-yellow-400 border-b-2 border-yellow-400 pb-1">Temperature</button>
-                <button class="text-gray-400">Precipitation</button>
-                <button class="text-gray-400">Wind</button>
-            </div>
-
-            <!-- Forecast Graph Placeholder -->
-            <div class="mt-4 bg-gray-800 p-4 rounded-lg h-24">
-                <p class="text-gray-400 text-center">[Graph Here]</p>
-            </div>
-
-            <!-- 7-Day Forecast -->
-            <div class="flex justify-between mt-6 text-center">
-                <div class="text-gray-400">
-                    <p>Sat</p>
-                    <img src="https://openweathermap.org/img/wn/01d.png" class="w-10 mx-auto">
-                    <p>--° --°</p>
-                </div>
-                <div class="text-gray-400">
-                    <p>Sun</p>
-                    <img src="https://openweathermap.org/img/wn/01d.png" class="w-10 mx-auto">
-                    <p>--° --°</p>
-                </div>
-                <div class="text-gray-400">
-                    <p>Mon</p>
-                    <img src="https://openweathermap.org/img/wn/01d.png" class="w-10 mx-auto">
-                    <p>--° --°</p>
-                </div>
-                <div class="text-gray-400">
-                    <p>Tue</p>
-                    <img src="https://openweathermap.org/img/wn/01d.png" class="w-10 mx-auto">
-                    <p>--° --°</p>
-                </div>
-                <div class="text-gray-400">
-                    <p>Wed</p>
-                    <img src="https://openweathermap.org/img/wn/02d.png" class="w-10 mx-auto">
-                    <p>--° --°</p>
-                </div>
-                <div class="text-gray-400">
-                    <p>Thu</p>
-                    <img src="https://openweathermap.org/img/wn/02d.png" class="w-10 mx-auto">
-                    <p>--° --°</p>
-                </div>
-                <div class="text-gray-400">
-                    <p>Fri</p>
-                    <img src="https://openweathermap.org/img/wn/02d.png" class="w-10 mx-auto">
-                    <p>--° --°</p>
-                </div>
+            <!-- 7-Day Forecast Container -->
+            <div id="forecastContainer" class="grid grid-cols-5 gap-2 mt-6 text-center">
             </div>
 
         </div>
