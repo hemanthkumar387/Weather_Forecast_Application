@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Forecast</title>
+    <meta name="author" content="Hemanth Kumar">
+    <meta name="keywords" content="Weather Forecast">
+    <link href="./output.css" rel="stylesheet">
+</head>
+<body class="bg-blue-100 flex justify-center items-center min-h-screen p-4">
+
+    <div class="flex flex-col md:flex-row bg-white shadow-lg rounded-lg overflow-hidden max-w-4xl w-full">
+        
+        <!-- Left Side: City Search -->
+        <div class="p-6 bg-gray-900 md:w-1/3 flex flex-col justify-center">
+            <h1 class="text-lg font-bold mb-3 text-white">Enter a City Name</h1>
+
+            <!-- Search Input + Dropdown -->
+            <div class="relative">
+                <input id="cityInput" type="text" placeholder="E.g., New York, London, Tokyo"
+                    class="w-full p-2 border rounded-md outline-none mb-2 bg-white">
+
+                <!-- Dropdown for Recent Searches -->
+                <select id="cityDropdown" class="w-full p-2 border rounded-md outline-none bg-white hidden" 
+                    onchange="getWeatherFromDropdown()">
+                    <option value="">Select a recent city</option>
+                </select>
+            </div>
+
+            <button onclick="getWeather()" class="w-full py-2 bg-blue-600 text-white rounded-md">
+                Search
+            </button>
+
+            <div class="flex items-center my-4">
+                <hr class="flex-grow border-gray-300">
+                <span class="px-2 text-gray-500">or</span>
+                <hr class="flex-grow border-gray-300">
+            </div>
+
+            <button onclick="getCurrentLocationWeather()" class="w-full py-2 bg-gray-600 text-white rounded-md">
+                Use Current Location
+            </button>
+        </div>
+
+        <!-- Divider Line -->
+        <div class="hidden md:block w-px bg-white-300"></div>
+
+        <!-- Right Side: Weather Display -->
+        <div class="p-6 bg-gray-900 text-white md:w-2/3">
+            <div class="flex justify-between items-center">
+                <h2 class="text-lg">Weather</h2>
+                <p id="currentTime" class="text-gray-400 text-sm">Saturday, 6:00 pm</p>
+            </div>
+
+            <div class="flex items-center space-x-4 mt-4">
+                <img id="weatherIcon" src="https://openweathermap.org/img/wn/02d@2x.png" alt="Weather Icon" class="w-16">
+                <h1 id="temperature" class="text-4xl font-bold">--°C</h1>
+            </div>
+
+            <p id="condition" class="text-gray-400 mt-2">--</p>
+            <p class="mt-2 text-sm">Precipitation: <span id="precipitation">--</span></p>
+            <p class="mt-1 text-sm">Humidity: <span id="humidity">--%</span></p>
+            <p class="mt-1 text-sm">Wind: <span id="windSpeed">-- km/h</span></p>
+
+            <!-- Forecast Tabs -->
+            <div class="flex space-x-6 mt-6 border-b border-gray-700 pb-2">
+                <button class="text-yellow-400 border-b-2 border-yellow-400 pb-1">Temperature</button>
+                <button class="text-gray-400">Precipitation</button>
+                <button class="text-gray-400">Wind</button>
+            </div>
+
+            <!-- Forecast Graph Placeholder -->
+            <div class="mt-4 bg-gray-800 p-4 rounded-lg h-24">
+                <p class="text-gray-400 text-center">[Graph Here]</p>
+            </div>
+
+            <!-- 7-Day Forecast -->
+            <div class="flex justify-between mt-6 text-center">
+                <div class="text-gray-400">
+                    <p>Sat</p>
+                    <img src="https://openweathermap.org/img/wn/01d.png" class="w-10 mx-auto">
+                    <p>--° --°</p>
+                </div>
+                <div class="text-gray-400">
+                    <p>Sun</p>
+                    <img src="https://openweathermap.org/img/wn/01d.png" class="w-10 mx-auto">
+                    <p>--° --°</p>
+                </div>
+                <div class="text-gray-400">
+                    <p>Mon</p>
+                    <img src="https://openweathermap.org/img/wn/01d.png" class="w-10 mx-auto">
+                    <p>--° --°</p>
+                </div>
+                <div class="text-gray-400">
+                    <p>Tue</p>
+                    <img src="https://openweathermap.org/img/wn/01d.png" class="w-10 mx-auto">
+                    <p>--° --°</p>
+                </div>
+                <div class="text-gray-400">
+                    <p>Wed</p>
+                    <img src="https://openweathermap.org/img/wn/02d.png" class="w-10 mx-auto">
+                    <p>--° --°</p>
+                </div>
+                <div class="text-gray-400">
+                    <p>Thu</p>
+                    <img src="https://openweathermap.org/img/wn/02d.png" class="w-10 mx-auto">
+                    <p>--° --°</p>
+                </div>
+                <div class="text-gray-400">
+                    <p>Fri</p>
+                    <img src="https://openweathermap.org/img/wn/02d.png" class="w-10 mx-auto">
+                    <p>--° --°</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
