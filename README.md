@@ -25,7 +25,7 @@ weather-app/
 
 ### 1. Clone the Repository
 ```sh
-git clone <https://github.com/hemanthkumar387/Weather_Forecast_Application>
+git clone https://github.com/hemanthkumar387/Weather_Forecast_Application
 cd Weather_Forecast_Application
 ```
 
