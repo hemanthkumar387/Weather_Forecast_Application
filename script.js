@@ -1,4 +1,4 @@
-const API_KEY = "ad17ab2efeef77130c6afe8cd42230ef";
+const API_KEY = "********************";
 const cityInput = document.getElementById("cityInput");
 const weatherIcon = document.getElementById("weatherIcon");
 const temperature = document.getElementById("temperature");
@@ -72,29 +72,44 @@ function updateFiveDayForecastUI(forecastData) {
     const forecastContainer = document.getElementById("forecastContainer");
     forecastContainer.innerHTML = "";
 
+    if (forecastData.length > 0) {
+        const heading = document.createElement("h2");
+        heading.textContent = "5-Day Forecast";
+        heading.className = "text-xl font-bold text-white text-center col-span-5 mb-4";
+        forecastContainer.appendChild(heading);
+    }
+
     // Get forecast for the next 5 days (every 24 hours at 12:00 PM)
     const dailyForecasts = forecastData.filter((entry) =>
-        entry.dt_txt.includes("12:00:00")
+        entry.dt_txt.includes("00:00:00")
     );
 
     dailyForecasts.forEach((day) => {
-        const date = new Date(day.dt * 1000).toLocaleDateString("en-US", { weekday: "short" });
-        const icon = `https://openweathermap.org/img/wn/${day.weather[0].icon}.png`;
-        const temp = `${Math.round(day.main.temp_min)}° / ${Math.round(day.main.temp_max)}°C`;
+        const date = new Date(day.dt * 1000).toLocaleDateString("en-IN", { 
+            weekday: "short", day: "numeric", month: "short" 
+        });
 
-        // Create a new forecast item
+        const icon = `https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`;
+        const temp = `${Math.round(day.main.temp)}°C`;
+        const wind = `${day.wind.speed} km/h`;
+        const humidity = `${day.main.humidity}%`;
+
+        // Create forecast card
         const forecastItem = document.createElement("div");
-        forecastItem.classList.add("text-gray-400", "text-center", "p-2");
+        forecastItem.classList.add("bg-gray-800", "text-white", "rounded-lg", "p-3", "text-center", "shadow-lg");
 
         forecastItem.innerHTML = `
-            <p class="font-semibold">${date}</p>
-            <img src="${icon}" class="w-10 mx-auto">
-            <p class="text-sm">${temp}</p>
+            <p class="font-semibold text-lg">${date}</p>
+            <img src="${icon}" class="w-16 mx-auto">
+            <p class="text-md">🌡️ Temperature: ${temp}</p>
+            <p class="text-sm">💨 Wind: ${wind}</p>
+            <p class="text-sm">💧 Humidity: ${humidity}</p>
         `;
 
         forecastContainer.appendChild(forecastItem);
     });
 }
+
 
 
 async function getCurrentLocationWeather() {
@@ -125,21 +140,15 @@ async function getCurrentLocationWeather() {
 }
 
 
-function getLocalTime(timezoneOffset) {
-    const utcTime = new Date().getTime() + new Date().getTimezoneOffset() * 60000;
-    const localTime = new Date(utcTime + timezoneOffset * 1000);
-    
-    return localTime.toLocaleString("en-US", { 
-        weekday: "long", // Full day name (e.g., Monday)
+function getSystemDate() {
+    return new Date().toLocaleDateString("en-IN", { 
+        weekday: "long", // Example: Monday
         year: "numeric", 
-        month: "long", // Full month name (e.g., January)
-        day: "numeric", 
-        hour: "2-digit", 
-        minute: "2-digit", 
-        second: "2-digit", 
-        hour12: true // AM/PM format
+        month: "long", // Example: January
+        day: "numeric" 
     });
 }
+
 
 function updateWeatherUI(data) {
     weatherIcon.src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
@@ -148,7 +157,9 @@ function updateWeatherUI(data) {
     humidity.textContent = `${data.main.humidity}%`;
     windSpeed.textContent = `${data.wind.speed} km/h`;
     precipitation.textContent = data.rain ? `${data.rain["1h"]} mm` : "0%";
-    currentTime.textContent = getLocalTime(data.timezone);
+    currentTime.textContent = getSystemDate();
+
+    document.getElementById("cityNameDisplay").textContent = data.name;
 }
 
 // Save recently searched cities in session storage
