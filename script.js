@@ -1,5 +1,5 @@
 // Define the API key for OpenWeatherMap API
-const API_KEY = "ad17ab2efeef77130c6afe8cd42230ef";
+const API_KEY = "YOUR_API_KEY";
 
 // Get references to the HTML elements
 const cityInput = document.getElementById("cityInput");
