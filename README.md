@@ -10,7 +10,20 @@ This project is a **Weather Forecast Application** built using **JavaScript, HTM
 - Responsive design using Tailwind CSS.
 - Extended forecast display.
 
-## Project Structure
+## Technologies Used
+- HTML
+- CSS (Tailwind CSS)
+- JavaScript
+- OpenWeatherMap API
+
+## Setup Instructions
+
+### Prerequisites
+- A text editor (VS Code, Sublime Text, etc.)
+- A web browser
+- An OpenWeatherMap API key (Sign up at [OpenWeatherMap](https://openweathermap.org/) to get your API key)
+
+### Project Structure
 ```
 weather-app/
 │── index.html         # Main HTML file
@@ -21,15 +34,13 @@ weather-app/
 │── assets/            # Folder for images or icons
 ```
 
-## Setup Instructions
-
-### 1. Clone the Repository
+### Clone the Repository
 ```sh
 git clone https://github.com/hemanthkumar387/Weather_Forecast_Application
 cd Weather_Forecast_Application
 ```
 
-### 2. Install Tailwind CSS
+### Install Tailwind CSS
 
 Run the following commands:
 Install `tailwindcss` and `@tailwindcss/cli` via npm.
@@ -67,7 +78,7 @@ Finally, link `output.css` in `index.html`.
 </html>
 ```
 
-### 3. Set Up Version Control (Git)
+### Set Up Version Control (Git)
 ```sh
 git init
 git add .
@@ -84,4 +95,34 @@ git remote add origin <your-github-repo-url>
 git branch -M main
 git push -u origin main
 ```
+
+### Configuration
+
+1. Open `script.js`
+2. Replace `YOUR_API_KEY` with your actual OpenWeatherMap API key:
+   ```js
+   const apiKey = "YOUR_API_KEY";
+   ```
+
+### Usage
+1. Enter a city name in the search bar.
+2. Click the "Search" button to fetch weather data.
+3. View the temperature, humidity, wind speed, and weather conditions displayed on the page.
+
+
+### Output
+Current Loaction:
+
+![Weather Application Output](https://github.com/user-attachments/assets/c2faabe3-7cc5-49f4-b860-d2b01fa3b937)
+
+Input Field:
+
+![Weather Application Output1](https://github.com/user-attachments/assets/342b07a8-50e4-4035-8844-bd45bd6333fc)
+
+Recent Search:
+
+![Weather Application Output2](https://github.com/user-attachments/assets/1c718c72-4a60-4363-a1ef-8a0955399864)
+
+
+
 
