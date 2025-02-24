@@ -1,74 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather Forecast</title>
-    <meta name="author" content="Hemanth Kumar">
-    <meta name="keywords" content="Weather Forecast">
-    <link href="./output.css" rel="stylesheet">
-</head>
-<body class="bg-blue-100 flex justify-center items-center min-h-screen p-4">
+    <meta name="author" content="Hemanth Kumar" />
+    <meta name="keywords" content="Weather Forecast" />
+    <link href="./output.css" rel="stylesheet" /> <!-- linking output css file which is tailwind output file -->
+  </head>
+  <body>
+    <div class="bg-blue-100 flex justify-center items-center min-h-screen p-4">
+    <div
+      class="flex flex-col bg-white shadow-lg rounded-lg overflow-hidden max-w-5xl w-full"
+    >
 
-    <div class="flex flex-col bg-white shadow-lg rounded-lg overflow-hidden max-w-5xl w-full">
-        
-        <!-- Left Side: City Search -->
-        <div class="p-6 bg-gray-900 md:w-full flex flex-col justify-center">
-            <h1 class="text-lg font-bold mb-3 text-white">Enter a City Name</h1>
-
-            <!-- Search Input + Dropdown -->
-            <div class="relative">
-                <input id="cityInput" type="text" placeholder="E.g., New York, London, Tokyo"
-                    class="w-full p-2 border rounded-md outline-none mb-2 bg-white">
-
-                <!-- Dropdown for Recent Searches -->
-                <select id="cityDropdown" class="w-full p-2 border rounded-md outline-none bg-white hidden" 
-                    onchange="getWeatherFromDropdown()">
-                    <option value="">Select a recent city</option>
-                </select>
-            </div>
-
-            <button onclick="getWeather()" class="w-full py-2 bg-blue-600 text-white rounded-md">
-                Search
-            </button>
-
-            <div class="flex items-center my-4">
-                <hr class="flex-grow border-gray-300">
-                <span class="px-2 text-gray-500">or</span>
-                <hr class="flex-grow border-gray-300">
-            </div>
-
-            <button onclick="getCurrentLocationWeather()" class="w-full py-2 bg-gray-600 text-white rounded-md">
-                Use Current Location
-            </button>
-        </div>
-
-        <!-- Divider Line -->
-        <div class="hidden md:block w-px bg-white-300"></div>
-
-        <!-- Right Side: Weather Display -->
-        <div class="p-6 bg-gray-900 text-white md:w-full">
-            <div class="flex justify-between items-center">
-                <h2 class="text-lg">Weather in <span id="cityNameDisplay" class="font-bold">--</span></h2>
-                <p id="currentTime" class="text-gray-400 text-sm"></p>
-            </div>
-
-            <div class="flex items-center space-x-4 mt-4">
-                <img id="weatherIcon" src="https://openweathermap.org/img/wn/02d@2x.png" alt="Weather Icon" class="w-20">
-                <h1 id="temperature" class="text-5xl font-bold">--°C</h1>
-            </div>
-
-            <p id="condition" class="text-gray-400 mt-2 text-lg">--</p>
-            <p class="mt-2 text-md">Precipitation: <span id="precipitation">--</span></p>
-            <p class="mt-1 text-md">Humidity: <span id="humidity">--%</span></p>
-            <p class="mt-1 text-md">Wind: <span id="windSpeed">-- km/h</span></p>
-
-            <!-- Forecast Section -->
-            <div id="forecastContainer" class="grid grid-cols-5 gap-3 mt-4 text-center"></div>
-
-        </div>
+    <!-- header  -->
+    <div class="bg-blue-600 text-white text-center py-4">
+      <h1 class="text-2xl font-bold md:text-3xl">Weather Dashboard</h1>
     </div>
 
+      <!-- Up Side: City Search -->
+      <div class="p-6 bg-gray-900 md:w-full flex flex-col justify-center">
+        <h1 class="text-lg font-bold mb-3 text-white">Enter a City Name</h1>
+
+        <!-- Search Input + Dropdown -->
+        <div class="relative">
+          <!-- city input -->
+          <input
+            id="cityInput"
+            type="text"
+            placeholder="E.g., New York, London, Tokyo"
+            class="w-full p-2 border rounded-md outline-none mb-2 bg-white"
+          />
+
+          <!-- Dropdown for Recent Searches -->
+          <select
+            id="cityDropdown"
+            class="w-full p-2 border rounded-md outline-none bg-white hidden mb-2"
+            onchange="getWeatherFromDropdown()"
+          >
+            <option value="">Select a recent city</option>
+          </select>
+        </div>
+
+        <!-- search button -->
+        <button
+          onclick="getWeather()"
+          class="w-full py-2 bg-blue-500 text-white rounded-md"
+        >
+          Search
+        </button>
+        <div class="flex items-center my-4">
+          <hr class="flex-grow border-gray-300" />
+          <span class="px-2 text-gray-500">or</span>
+          <hr class="flex-grow border-gray-300" />
+        </div>
+
+        <!-- Current location button -->
+        <button
+          onclick="getCurrentLocationWeather()"
+          class="w-full py-2 bg-gray-600 text-white rounded-md"
+        >
+          Use Current Location
+        </button>
+      </div>
+
+      <!-- Divider Line -->
+      <div class="border-gray-500 my-1"></div>
+
+      <!-- Down Side: Weather Display -->
+      <div class="p-6 bg-gray-900 text-white md:w-full">
+        <div
+          class="bg-blue-500 p-6 rounded-lg flex flex-col justify-evenly items-center text-center md:flex-row md:justify-between md:items-center"
+        >
+          <!-- Left: Weather Icon & Temperature -->
+          <div class="flex flex-col md:flex-row md:items-center">
+            <div class="flex items-center justify-center">
+              <img
+                id="weatherIcon"
+                src="https://openweathermap.org/img/wn/02d@2x.png"
+                alt="Weather Icon"
+                class="w-26 h-26 md:w-30 md:h-30 drop-shadow-lg"
+              />
+            </div>
+            <!-- Middle: Weather Details -->
+            <div class="font-bold text-md text-gray-200 text-left">
+              <h1 class="text-xl font-bold text-white md:text-2xl">
+                Temperature: <span id="temperature">--</span>
+              </h1>
+              <p>Precipitation: <span id="precipitation">--</span></p>
+              <p>Humidity: <span id="humidity">--</span></p>
+              <p>Wind: <span id="windSpeed">--</span></p>
+            </div>
+          </div>
+
+          <!-- Right: Location & Time -->
+          <div class="mt-3 ml-5 text-left md:text-right text-white md:mt-0">
+            <h2 class="text-l font-semibold md:text-2xl">
+              Weather in <span id="cityNameDisplay" class="font-bold">--</span>
+            </h2>
+            <p id="currentTime" class="text-gray-200 font-semibold">--</p>
+            <p id="condition" class="text-lg text-gray-200 font-medium">--</p>
+          </div>
+        </div>
+
+        <!-- Forecast Section -->
+        <div id="forecast" class="flex flex-wrap justify-center gap-4 w-full">
+          <!-- Initially empty -->
+          <div
+            id="forecastContainer"
+            class="flex flex-wrap justify-center gap-3 w-full"
+          ></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- Linking Script file -->
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
